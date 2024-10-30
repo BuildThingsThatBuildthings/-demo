@@ -92,10 +92,12 @@
         }
 
         .hamburger span {
+            display: block;
             width: 30px;
             height: 2px;
             background: white;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease-in-out,
+                        opacity 0.2s ease-in-out;
         }
 
         .mobile-menu {
