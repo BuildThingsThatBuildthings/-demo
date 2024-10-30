@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hideout Golf Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            background: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-button:hover {
+            color: #666;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66f436d2235a9568e502f800.png');
+            background-size: cover;
+            background-position: center 25%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-top: 120px;
+        }
+
+        .main-content {
+            padding: 0 10%;
+            color: white;
+        }
+
+        .hero-title {
+            font-size: 7rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-top: 3rem;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background: #f0f0f0;
+        }
+
+        .side-sections {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .video-section, .booking-section {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 2rem;
+            border-radius: 4px;
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        .section-text {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .video-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="#" class="nav-button">WHO WE ARE</a>
+            <a href="#" class="nav-button">CLUBHOUSES</a>
+        </div>
+        <div class="logo">
+            <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-button">CONTACT US</a>
+            <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="main-content">
+            <h1 class="hero-title">Transform Your<br>Golf Game</h1>
+            <div class="side-sections">
+                <div class="video-section">
+                    <h2 class="section-title">MESSAGE FROM THE OWNER</h2>
+                    <div class="video-placeholder">
+                        [Video Message Coming Soon]
+                    </div>
+                </div>
+                
+                <div class="booking-section">
+                    <h2 class="section-title">1 DAY MEMBERSHIP</h2>
+                    <p class="section-text">Experience The Hideout Golf Club for a day</p>
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" 
+                        data-url="https://calendly.com/hideoutgolf/member-for-a-day?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=ffffff" 
+                        style="min-width:320px;height:600px;">
+                    </div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
+            </div>
+            <p class="hero-subtitle">Expert instruction tailored to your skill level. Our PGA professionals are here to help you achieve your golfing goals.</p>
+        </div>
+    </section>
+</body>
+</html>
