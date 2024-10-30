@@ -410,6 +410,150 @@
                 min-height: 60px;
             }
         }
+
+        /* Container styles */
+        .booking-section {
+            flex: 1;
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            color: white;
+            backdrop-filter: blur(10px);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .booking-tagline {
+            color: var(--gold);
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            position: absolute;
+            top: 2rem;  /* Position at top of container */
+            text-align: center;
+            z-index: 2;
+        }
+
+        /* Calendar specific adjustments */
+        .calendly-inline-widget {
+            width: 100% !important;
+            height: 650px !important;
+            margin-top: -40px;
+            background: transparent !important;
+            transform: scale(0.75);
+            transform-origin: center center;
+            position: relative;
+            top: 1.5rem;
+        }
+
+        .calendly-inline-widget iframe {
+            width: 100% !important;
+            height: 750px !important;
+            background: transparent !important;
+            filter: brightness(0.9);
+            border: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .booking-section {
+                height: 500px;
+                padding: 1.5rem;
+            }
+
+            .calendly-inline-widget {
+                height: 600px !important;
+                transform: scale(0.65);
+                margin-top: -60px;
+            }
+
+            .calendly-inline-widget iframe {
+                height: 700px !important;
+            }
+        }
+
+        /* Header and tagline styles */
+        .booking-section {
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            position: absolute;
+            top: 1rem;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .booking-tagline {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: absolute;
+            top: 3.5rem;
+            text-align: center;
+            z-index: 2;
+            color: var(--text-primary);
+        }
+
+        .glow-text {
+            color: var(--text-primary);
+            text-shadow: 0 0 10px var(--accent-glow),
+                        0 0 20px var(--accent-glow),
+                        0 0 30px var(--accent-glow);
+        }
+
+        /* Video section styles */
+        .video-section {
+            flex: 1;
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            color: white;
+            backdrop-filter: blur(10px);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            flex-grow: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .video-section .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            text-align: center;
+            padding-bottom: 0.5rem;
+            position: static;
+        }
     </style>
 </head>
 <body>
@@ -445,16 +589,17 @@
             
             <div class="side-sections">
                 <div class="video-section">
-                    <h2 class="section-title">MESSAGE FROM THE OWNER</h2>
                     <div class="video-placeholder">
                         <video autoplay muted loop playsinline>
                             <source src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66ef07be4b96a92a2ec3f410.mp4" type="video/mp4">
                         </video>
                     </div>
+                    <h2 class="section-title">MESSAGE FROM THE OWNER</h2>
                 </div>
                 
                 <div class="booking-section">
-                    <h2 class="section-title">BOOK YOUR ONE DAY MEMBERSHIP</h2>
+                    <h2 class="section-title">ONE DAY MEMBERSHIP</h2>
+                    <h3 class="booking-tagline">A New Way To Live A <span class="glow-text">Golf Life</span></h3>
                     <div class="calendly-inline-widget" 
                         data-url="https://calendly.com/hideoutgolf/member-for-a-day?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=c9a95c&hide_event_type_details=1&hide_landing_page_details=1&hide_gdpr_banner=1&month_view=true">
                     </div>
