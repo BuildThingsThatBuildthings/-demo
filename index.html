@@ -15,136 +15,301 @@
             font-family: 'Inter', sans-serif;
         }
 
+        :root {
+            --accent-glow: rgba(255, 255, 255, 0.8);
+            --text-primary: #ffffff;
+            --bg-dark: rgba(0, 0, 0, 0.85);
+        }
+
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 4rem;
-            background: white;
+            background: rgba(0, 0, 0, 0.9);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            max-width: 1800px;
+            margin: 0 auto;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-left, .nav-right {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            justify-content: center;
+            gap: 4rem;
+            flex: 1;
         }
 
         .logo img {
             height: 40px;
-            width: auto;
+            width: 200px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
         .nav-button {
             text-decoration: none;
-            color: #333;
-            font-size: 0.9rem;
+            color: #fff;
+            font-size: 1rem;
             text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            transition: color 0.3s;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            background: #c9a95c;
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-button:hover::after {
+            width: 100%;
         }
 
         .nav-button:hover {
-            color: #666;
+            color: #c9a95c;
         }
 
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66f436d2235a9568e502f800.png');
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66f436d2235a9568e502f800.png');
             background-size: cover;
-            background-position: center 25%;
+            background-position: center;
             display: flex;
-            flex-direction: column;
-            position: relative;
-            padding-top: 120px;
+            align-items: center;
+            padding-top: 80px;
         }
 
         .main-content {
-            padding: 0 10%;
+            padding: 0 5%;
             color: white;
+            text-align: center;
+            max-width: 1800px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .hero-title {
-            font-size: 7rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 3rem;
-            line-height: 1.2;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            color: var(--text-primary);
         }
 
         .hero-subtitle {
             font-size: 1.5rem;
-            font-weight: 400;
+            font-weight: 300;
             line-height: 1.5;
-            margin-top: 3rem;
+            margin: 2rem auto;
             opacity: 0.95;
-            max-width: 600px;
+            max-width: 700px;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .button {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: white;
-            color: #333;
+            background: #c9a95c;
+            color: #000;
             text-decoration: none;
             text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 1px;
             font-size: 0.9rem;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
         .button:hover {
-            background: #f0f0f0;
+            background: #d4b76d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 169, 92, 0.3);
         }
 
         .side-sections {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 2rem;
             margin: 2rem 0;
+            align-items: start;
         }
 
         .video-section, .booking-section {
             flex: 1;
-            background: rgba(0, 0, 0, 0.75);
+            background: var(--bg-dark);
             padding: 2rem;
-            border-radius: 4px;
+            border-radius: 12px;
             color: white;
             backdrop-filter: blur(10px);
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .section-title {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: white;
+            color: #c9a95c;
+            margin-bottom: 1rem;
+            text-align: center;
         }
 
         .section-text {
             font-size: 1rem;
             margin-bottom: 1.5rem;
             opacity: 0.9;
+            text-align: center;
+            color: #fff;
         }
 
         .video-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .video-placeholder video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .glow-text {
+            color: var(--text-primary);
+            text-shadow: 0 0 10px var(--accent-glow),
+                        0 0 20px var(--accent-glow),
+                        0 0 30px var(--accent-glow);
+        }
+
+        .calendly-inline-widget {
+            width: 100%;
+            height: 540px !important;
+            margin-top: -60px;
+            background: transparent !important;
+        }
+
+        .calendly-inline-widget iframe {
+            width: 100% !important;
+            height: 580px !important;
+            background: transparent !important;
+            filter: brightness(0.9);
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                padding: 0 3%;
+            }
+            
+            .video-placeholder,
+            .calendly-inline-widget {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .side-sections {
+                gap: 1.5rem;
+            }
+
+            .video-section, .booking-section {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 0 20px;
+            }
+
+            .side-sections {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+
+            .video-placeholder,
+            .calendly-inline-widget {
+                height: 350px;
+            }
+
+            .video-section, .booking-section {
+                padding: 1.5rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                margin-top: 1rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin: 1rem auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-placeholder,
+            .calendly-inline-widget {
+                height: 300px;
+            }
+
+            .video-section, .booking-section {
+                padding: 1rem;
+            }
+        }
+
+        .features-section {
+            margin-top: 3rem;
+            text-align: center;
+            color: white;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
             background: rgba(255, 255, 255, 0.1);
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .highlight-text {
+            color: #c9a95c;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -165,28 +330,68 @@
 
     <section class="hero">
         <div class="main-content">
-            <h1 class="hero-title">Transform Your<br>Golf Game</h1>
+            <h1 class="hero-title">Transform <span class="glow-text">Your</span><br>Golf Game</h1>
+            
             <div class="side-sections">
                 <div class="video-section">
                     <h2 class="section-title">MESSAGE FROM THE OWNER</h2>
                     <div class="video-placeholder">
-                        [Video Message Coming Soon]
+                        <video autoplay muted loop playsinline>
+                            <source src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66ef07be4b96a92a2ec3f410.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 
                 <div class="booking-section">
-                    <h2 class="section-title">1 DAY MEMBERSHIP</h2>
-                    <p class="section-text">Experience The Hideout Golf Club for a day</p>
-                    <!-- Calendly inline widget begin -->
+                    <h2 class="section-title">BOOK YOUR ONE DAY MEMBERSHIP</h2>
                     <div class="calendly-inline-widget" 
-                        data-url="https://calendly.com/hideoutgolf/member-for-a-day?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=ffffff" 
-                        style="min-width:320px;height:600px;">
+                        data-url="https://calendly.com/hideoutgolf/member-for-a-day?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=c9a95c&hide_event_type_details=1&hide_landing_page_details=1&hide_gdpr_banner=1&month_view=true">
                     </div>
-                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                    <!-- Calendly inline widget end -->
+                    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
                 </div>
             </div>
-            <p class="hero-subtitle">Expert instruction tailored to your skill level. Our PGA professionals are here to help you achieve your golfing goals.</p>
+
+            <div class="features-section">
+                <h2 class="section-title">Membership Benefits</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <p><span class="highlight-text">Access to 2 locations</span></p>
+                    </div>
+                    <div class="feature-item">
+                        <p>The same <span class="highlight-text">Trackman Technology</span> used by the PGA Tour</p>
+                    </div>
+                    <div class="feature-item">
+                        <p>1 on 1 onboarding session and lesson</p>
+                    </div>
+                    <div class="feature-item">
+                        <p><span class="highlight-text">Expert Guidance</span></p>
+                    </div>
+                    <div class="feature-item">
+                        <p>6:00a - 10:00p Facility Access</p>
+                    </div>
+                    <div class="feature-item">
+                        <p>ALL memberships are family memberships</p>
+                    </div>
+                    <div class="feature-item">
+                        <p>Gym Access</p>
+                    </div>
+                    <div class="feature-item">
+                        <p>Putt lab</p>
+                    </div>
+                    <div class="feature-item">
+                        <p>Co-working Space</p>
+                    </div>
+                    <div class="feature-item">
+                        <p>Field Trips</p>
+                    </div>
+                    <div class="feature-item">
+                        <p>Community Events</p>
+                    </div>
+                    <div class="feature-item">
+                        <p>and so much more!</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </body>
