@@ -625,6 +625,22 @@
                 3px 3px 0 rgba(200, 200, 200, 1);
             letter-spacing: 1px;
         }
+
+        .video-placeholder {
+            position: relative;
+        }
+
+        .mute-toggle {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -661,11 +677,11 @@
             <div class="side-sections">
                 <div class="video-section">
                     <div class="video-placeholder">
-                        <video autoplay muted loop playsinline>
+                        <video id="ownerVideo" controls autoplay muted loop playsinline>
                             <source src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66ef07be4b96a92a2ec3f410.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <h2 class="section-title">Live Lesson</h2>
+                    <h2 class="section-title">MESSAGE FROM THE OWNER</h2>
                 </div>
                 
                 <div class="booking-section">
