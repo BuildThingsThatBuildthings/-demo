@@ -87,7 +87,8 @@
             gap: 6px;
             cursor: pointer;
             padding: 10px;
-            z-index: 1001;
+            z-index: 1000;
+            position: relative;
         }
 
         .hamburger span {
@@ -109,7 +110,7 @@
             flex-direction: column;
             align-items: center;
             gap: 2rem;
-            z-index: 1000;
+            z-index: 999;
             transform: translateX(100%);
             transition: transform 0.3s ease;
         }
@@ -715,19 +716,39 @@
         function toggleMenu() {
             const mobileMenu = document.querySelector('.mobile-menu');
             const hamburger = document.querySelector('.hamburger');
-            mobileMenu.classList.toggle('active');
             
-            const spans = hamburger.querySelectorAll('span');
-            if (mobileMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
+            // Toggle active classes
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            // Prevent body scrolling when menu is open
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         }
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.querySelector('.mobile-menu');
+                const hamburger = document.querySelector('.hamburger');
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
 
         // Fix iOS background-attachment: fixed issue
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
