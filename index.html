@@ -13,6 +13,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -24,17 +25,22 @@
 
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            padding: 1.5rem 4rem;
+            padding: 1rem 4rem;
             background: rgba(0, 0, 0, 0.9);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            max-width: 1800px;
-            margin: 0 auto;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo img {
+            height: 40px;
+            width: 200px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
         .nav-left, .nav-right {
@@ -43,13 +49,6 @@
             justify-content: center;
             gap: 4rem;
             flex: 1;
-        }
-
-        .logo img {
-            height: 40px;
-            width: 200px;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
         }
 
         .nav-button {
@@ -61,6 +60,7 @@
             letter-spacing: 1px;
             transition: all 0.3s;
             position: relative;
+            padding: 0.5rem;
         }
 
         .nav-button::after {
@@ -83,6 +83,43 @@
             color: var(--gold);
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 30px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 80px 2rem 2rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
         .hero {
             min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66f436d2235a9568e502f800.png');
@@ -92,6 +129,12 @@
             display: flex;
             align-items: center;
             padding: 120px 0 60px;
+        }
+
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                background-attachment: scroll;
+            }
         }
 
         .main-content {
@@ -217,6 +260,10 @@
             border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             overflow: hidden;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .feature-item::before {
@@ -261,6 +308,14 @@
             .side-sections {
                 min-height: 500px;
             }
+
+            .navbar {
+                padding: 1rem 2rem;
+            }
+
+            .nav-left, .nav-right {
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 992px) {
@@ -270,6 +325,28 @@
 
             .video-section, .booking-section {
                 padding: 1.8rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-left, .nav-right {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .navbar {
+                padding: 0.8rem 1.5rem;
+                justify-content: space-between;
+            }
+
+            .logo img {
+                width: 160px;
+                height: 32px;
             }
         }
 
@@ -302,6 +379,11 @@
                 margin: 2rem auto;
                 padding: 1.5rem;
             }
+
+            .feature-item {
+                padding: 1.5rem;
+                min-height: 70px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -313,23 +395,49 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo img {
+                width: 140px;
+                height: 28px;
+            }
+
+            .feature-item {
+                padding: 1.2rem;
+                min-height: 60px;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
+        <div class="logo">
+            <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
+        </div>
         <div class="nav-left">
             <a href="#" class="nav-button">WHO WE ARE</a>
             <a href="#" class="nav-button">CLUBHOUSES</a>
-        </div>
-        <div class="logo">
-            <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
         </div>
         <div class="nav-right">
             <a href="#" class="nav-button">CONTACT US</a>
             <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
         </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
+
+    <div class="mobile-menu">
+        <a href="#" class="nav-button">WHO WE ARE</a>
+        <a href="#" class="nav-button">CLUBHOUSES</a>
+        <a href="#" class="nav-button">CONTACT US</a>
+        <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
+    </div>
 
     <section class="hero">
         <div class="main-content">
@@ -397,5 +505,32 @@
             </div>
         </div>
     </section>
+
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            mobileMenu.classList.toggle('active');
+            
+            const spans = hamburger.querySelectorAll('span');
+            if (mobileMenu.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        }
+
+        // Fix iOS background-attachment: fixed issue
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.backgroundAttachment = 'scroll';
+            }
+        }
+    </script>
 </body>
 </html>
