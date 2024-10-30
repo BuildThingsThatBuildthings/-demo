@@ -19,6 +19,7 @@
             --accent-glow: rgba(255, 255, 255, 0.8);
             --text-primary: #ffffff;
             --bg-dark: rgba(0, 0, 0, 0.85);
+            --gold: #c9a95c;
         }
 
         .navbar {
@@ -69,7 +70,7 @@
             height: 1px;
             bottom: -4px;
             left: 50%;
-            background: #c9a95c;
+            background: var(--gold);
             transition: all 0.3s;
             transform: translateX(-50%);
         }
@@ -79,7 +80,7 @@
         }
 
         .nav-button:hover {
-            color: #c9a95c;
+            color: var(--gold);
         }
 
         .hero {
@@ -87,9 +88,10 @@
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66f436d2235a9568e502f800.png');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding: 120px 0 60px;
         }
 
         .main-content {
@@ -119,48 +121,31 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        .button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: #c9a95c;
-            color: #000;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .button:hover {
-            background: #d4b76d;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(201, 169, 92, 0.3);
-        }
-
         .side-sections {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-            align-items: start;
+            gap: 2.5rem;
+            margin: 3rem 0;
+            align-items: stretch;
+            min-height: 600px;
         }
 
         .video-section, .booking-section {
-            flex: 1;
             background: var(--bg-dark);
             padding: 2rem;
             border-radius: 12px;
             color: white;
             backdrop-filter: blur(10px);
-            height: 600px;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-section:hover, .booking-section:hover {
+            transform: translateY(-5px);
         }
 
         .section-title {
@@ -168,24 +153,17 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #c9a95c;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .section-text {
-            font-size: 1rem;
+            color: var(--gold);
             margin-bottom: 1.5rem;
-            opacity: 0.9;
             text-align: center;
-            color: #fff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .video-placeholder {
-            width: 100%;
-            height: 100%;
+            flex: 1;
             border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         .video-placeholder video {
@@ -195,6 +173,79 @@
             border-radius: 8px;
         }
 
+        .calendly-inline-widget {
+            flex: 1;
+            min-height: 500px !important;
+            background: transparent !important;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .calendly-inline-widget iframe {
+            width: 100% !important;
+            height: 100% !important;
+            background: transparent !important;
+            filter: brightness(1.1);
+            border: none;
+        }
+
+        .features-section {
+            margin: 4rem auto;
+            text-align: center;
+            color: white;
+            max-width: 1200px;
+            padding: 2rem;
+            background: rgba(0,0,0,0.7);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.8rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(201, 169, 92, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .feature-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .highlight-text {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
         .glow-text {
             color: var(--text-primary);
             text-shadow: 0 0 10px var(--accent-glow),
@@ -202,38 +253,23 @@
                         0 0 30px var(--accent-glow);
         }
 
-        .calendly-inline-widget {
-            width: 100%;
-            height: 540px !important;
-            margin-top: -60px;
-            background: transparent !important;
-        }
-
-        .calendly-inline-widget iframe {
-            width: 100% !important;
-            height: 580px !important;
-            background: transparent !important;
-            filter: brightness(0.9);
-        }
-
         @media (max-width: 1200px) {
             .main-content {
                 padding: 0 3%;
             }
             
-            .video-placeholder,
-            .calendly-inline-widget {
-                height: 400px;
+            .side-sections {
+                min-height: 500px;
             }
         }
 
         @media (max-width: 992px) {
             .side-sections {
-                gap: 1.5rem;
+                gap: 2rem;
             }
 
             .video-section, .booking-section {
-                padding: 2rem;
+                padding: 1.8rem;
             }
         }
 
@@ -244,17 +280,12 @@
 
             .side-sections {
                 grid-template-columns: 1fr;
-                gap: 1rem;
-                margin: 1rem 0;
-            }
-
-            .video-placeholder,
-            .calendly-inline-widget {
-                height: 350px;
+                gap: 2rem;
+                margin: 2rem 0;
             }
 
             .video-section, .booking-section {
-                padding: 1.5rem;
+                min-height: 450px;
             }
 
             .hero-title {
@@ -266,50 +297,22 @@
                 font-size: 1.1rem;
                 margin: 1rem auto;
             }
+
+            .features-section {
+                margin: 2rem auto;
+                padding: 1.5rem;
+            }
         }
 
         @media (max-width: 480px) {
-            .video-placeholder,
-            .calendly-inline-widget {
-                height: 300px;
-            }
-
             .video-section, .booking-section {
-                padding: 1rem;
+                min-height: 400px;
+                padding: 1.2rem;
             }
-        }
 
-        .features-section {
-            margin-top: 3rem;
-            text-align: center;
-            color: white;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .highlight-text {
-            color: #c9a95c;
-            font-weight: 500;
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
