@@ -294,15 +294,20 @@
 
         .glow-text {
             color: #000000 !important;
+            font-weight: 800 !important;
+            text-transform: none;
+            position: relative;
             text-shadow: 
-                -1px -1px 0 #ffffff,  
+                /* Sharp white outline */
+                -1px -1px 0 #ffffff,
                 1px -1px 0 #ffffff,
                 -1px 1px 0 #ffffff,
                 1px 1px 0 #ffffff,
-                0 0 10px rgba(255, 255, 255, 0.8),
-                0 0 20px rgba(255, 255, 255, 0.5),
-                0 0 30px rgba(255, 255, 255, 0.3) !important;
-            font-weight: bold;
+                /* Crisp edge highlight */
+                2px 2px 0 rgba(255, 255, 255, 1),
+                /* Subtle depth */
+                3px 3px 0 rgba(200, 200, 200, 1);
+            letter-spacing: 1px;
         }
 
         @media (max-width: 1200px) {
@@ -606,14 +611,17 @@
         .hero-title .glow-text,
         .booking-tagline .glow-text {
             color: #000000 !important;
+            font-weight: 800 !important;
+            text-transform: none;
+            position: relative;
             text-shadow: 
-                -1px -1px 0 #ffffff,  
+                -1px -1px 0 #ffffff,
                 1px -1px 0 #ffffff,
                 -1px 1px 0 #ffffff,
                 1px 1px 0 #ffffff,
-                0 0 10px rgba(255, 255, 255, 0.8),
-                0 0 20px rgba(255, 255, 255, 0.5),
-                0 0 30px rgba(255, 255, 255, 0.3) !important;
+                2px 2px 0 rgba(255, 255, 255, 1),
+                3px 3px 0 rgba(200, 200, 200, 1);
+            letter-spacing: 1px;
         }
     </style>
 </head>
