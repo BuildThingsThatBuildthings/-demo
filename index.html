@@ -17,8 +17,6 @@
         }
 
         :root {
-            --accent-glow: rgba(255, 255, 255, 0.8);
-            --text-primary: #ffffff;
             --bg-dark: rgba(0, 0, 0, 0.85);
             --gold: #c9a95c;
         }
@@ -294,10 +292,16 @@
         }
 
         .glow-text {
-            color: var(--text-primary);
-            text-shadow: 0 0 10px var(--accent-glow),
-                        0 0 20px var(--accent-glow),
-                        0 0 30px var(--accent-glow);
+            color: #000000 !important;
+            text-shadow: 
+                -1px -1px 0 #ffffff,  
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                1px 1px 0 #ffffff,
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 255, 255, 0.5),
+                0 0 30px rgba(255, 255, 255, 0.3) !important;
+            font-weight: bold;
         }
 
         @media (max-width: 1200px) {
@@ -553,6 +557,62 @@
             text-align: center;
             padding-bottom: 0.5rem;
             position: static;
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .booking-section {
+                height: 500px;
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 1rem;
+                top: 0.5rem;
+            }
+
+            .booking-tagline {
+                font-size: 1.4rem;
+                top: 2.5rem;
+            }
+
+            .calendly-inline-widget {
+                height: 600px !important;
+                transform: scale(0.65);
+                margin-top: -40px;
+                top: 2rem;  /* Adjusted to prevent overlap with header */
+            }
+
+            .calendly-inline-widget iframe {
+                height: 700px !important;
+            }
+        }
+
+        /* Even smaller screens */
+        @media (max-width: 480px) {
+            .booking-tagline {
+                font-size: 1.2rem;
+                top: 2.2rem;
+            }
+
+            .calendly-inline-widget {
+                transform: scale(0.6);
+                top: 2.5rem;
+            }
+        }
+
+        /* Remove any other glow-related styles that might be overriding */
+        .hero-title .glow-text,
+        .booking-tagline .glow-text {
+            color: #000000 !important;
+            text-shadow: 
+                -1px -1px 0 #ffffff,  
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                1px 1px 0 #ffffff,
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 255, 255, 0.5),
+                0 0 30px rgba(255, 255, 255, 0.3) !important;
         }
     </style>
 </head>
