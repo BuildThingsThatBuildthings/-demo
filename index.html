@@ -641,6 +641,63 @@
             height: 40px;
             cursor: pointer;
         }
+
+        /* Popup styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-content {
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            border: 1px solid var(--gold);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .popup-title {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            padding-right: 20px;
+        }
+
+        .popup-description {
+            color: white;
+            line-height: 1.6;
+        }
+
+        .feature-item {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -783,6 +840,75 @@
                 hero.style.backgroundAttachment = 'scroll';
             }
         }
+
+        // Popup content for each feature
+        const featureDetails = {
+            'Access to 2 locations': {
+                title: 'Access to 2 locations',
+                description: 'Enjoy unlimited access to both our North and South Austin locations. Each facility is equipped with state-of-the-art technology and amenities to enhance your golf experience.'
+            },
+            'Trackman Technology': {
+                title: 'Trackman Technology',
+                description: 'Practice with the same technology used by PGA Tour professionals. Our Trackman systems provide precise data on every aspect of your swing, helping you improve with detailed analytics and feedback.'
+            },
+            '1 on 1 onboarding session and lesson': {
+                title: 'Personal Onboarding & Lesson',
+                description: 'Start your membership right with a personalized onboarding session and golf lesson. Our professionals will help you set goals and create a plan for improvement.'
+            },
+            'Expert Guidance': {
+                title: 'Expert Guidance',
+                description: 'Access to our team of PGA professionals and certified instructors who are always available to provide tips, feedback, and guidance on your golf game.'
+            },
+            // Add details for other features...
+        };
+
+        // Update feature items to be clickable
+        document.querySelectorAll('.feature-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const text = item.textContent.trim();
+                const details = featureDetails[text] || {
+                    title: text,
+                    description: 'More details coming soon...'
+                };
+                showPopup(details.title, details.description);
+            });
+        });
+
+        function showPopup(title, description) {
+            const overlay = document.getElementById('popupOverlay');
+            overlay.querySelector('.popup-title').textContent = title;
+            overlay.querySelector('.popup-description').textContent = description;
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('popupOverlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closePopup();
+            }
+        });
+
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePopup();
+            }
+        });
     </script>
+
+    <!-- Add this right before the closing body tag -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">×</button>
+            <h3 class="popup-title"></h3>
+            <div class="popup-description"></div>
+        </div>
+    </div>
 </body>
 </html>
