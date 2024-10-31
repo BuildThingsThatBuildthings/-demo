@@ -185,9 +185,6 @@
             margin: 3rem 0;
             align-items: stretch;
             min-height: 600px;
-            background: transparent;
-            position: relative;
-            z-index: 1;
         }
 
         .video-section, .booking-section {
@@ -781,103 +778,6 @@
             overflow: -moz-scrollbars-none !important;  /* Old Firefox */
             overflow: hidden
         }
-
-        /* Add after the features-section div */
-        .bottom-image {
-            margin-top: 4rem;
-            text-align: center;
-        }
-
-        .bottom-image img {
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-        }
-
-        /* Update location popup styles */
-        .location-content {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .location-image {
-            width: 100%;
-            max-width: 400px;  /* Limit maximum width */
-            margin: 0 auto;  /* Center the image */
-        }
-
-        .location-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            object-fit: contain;  /* Maintain aspect ratio */
-        }
-
-        /* Comprehensive breakpoint system */
-        @media (max-width: 1200px) {
-            .nav-button {
-                font-size: 0.85rem;
-                padding: 0.4rem 0.8rem;
-            }
-            
-            .nav-left, .nav-right {
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .nav-left, .nav-right {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-                padding: 0.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .navbar {
-                padding: 0.8rem 1rem;
-            }
-
-            .logo {
-                width: 120px;
-            }
-
-            .mobile-menu .nav-button {
-                font-size: 1rem;
-                padding: 0.8rem;
-            }
-        }
-
-        .container {
-            background-image: url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66ef08e23b00e20017ed8cac.png');
-            background-size: cover;
-            background-position: center;
-            padding: 2rem;
-            min-height: 100vh;
-        }
-
-        .content-wrapper {
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            flex: 1;
-        }
-
-        .form-container {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 8px;
-        }
     </style>
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 </head>
@@ -888,10 +788,10 @@
         </div>
         <div class="nav-left">
             <a href="who_we_are.html" class="nav-button">WHO WE ARE</a>
-            <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
+            <a href="#" class="nav-button">CLUBHOUSES</a>
         </div>
         <div class="nav-right">
-            <a href="contact_us.html" class="nav-button">CONTACT US</a>
+            <a href="#" class="nav-button">CONTACT US</a>
             <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
         </div>
         <div class="hamburger" onclick="toggleMenu()">
@@ -903,8 +803,8 @@
 
     <div class="mobile-menu">
         <a href="who_we_are.html" class="nav-button">WHO WE ARE</a>
-        <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
-        <a href="contact_us.html" class="nav-button">CONTACT US</a>
+        <a href="#" class="nav-button">CLUBHOUSES</a>
+        <a href="#" class="nav-button">CONTACT US</a>
         <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
     </div>
 
@@ -975,11 +875,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Add after the features-section div -->
-            <div class="bottom-image">
-                <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66e350c1ef38a5b8b451ac9f.png" alt="Hideout Golf Club Footer">
-            </div>
         </div>
     </section>
 
@@ -1032,23 +927,8 @@
         // Popup content for each feature
         const featureDetails = {
             'Access to 2 locations': {
-                title: 'Two Premier Nashville Locations',
-                description: `
-                    <div class="location-content">
-                        <div class="location-image">
-                            <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66d9b99e4bb8a94f5afba5c1.png" alt="Hideout Golf Club Locations">
-                        </div>
-                        <div class="location-text">
-                            <p><strong>North Nashville Location:</strong><br>
-                            [Address here]<br>
-                            [Brief description of North location]</p>
-                            
-                            <p><strong>South Nashville Location:</strong><br>
-                            [Address here]<br>
-                            [Brief description of South location]</p>
-                        </div>
-                    </div>
-                `
+                title: 'Access to 2 locations',
+                description: 'Enjoy unlimited access to both our North and South Austin locations. Each facility is equipped with state-of-the-art technology and amenities to enhance your golf experience.'
             },
             'Trackman Technology': {
                 title: 'Trackman Technology',
@@ -1080,7 +960,7 @@
         function showPopup(title, description) {
             const overlay = document.getElementById('popupOverlay');
             overlay.querySelector('.popup-title').textContent = title;
-            overlay.querySelector('.popup-description').innerHTML = description;
+            overlay.querySelector('.popup-description').textContent = description;
             overlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }

@@ -1,0 +1,26 @@
+.container {
+  background-image: url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66ef08e23b00e20017ed8cac.png');
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  flex: 1;
+}
+
+.form-container {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border-radius: 8px;
+} 
