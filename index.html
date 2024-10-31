@@ -1140,15 +1140,12 @@
             const mobileMenu = document.querySelector('.mobile-menu');
             const hamburger = document.querySelector('.hamburger');
             
-            // Toggle active classes
             mobileMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
-            
-            // Prevent body scrolling when menu is open
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         }
 
-        // Close menu when clicking a link
+        // Close mobile menu when clicking links
         document.querySelectorAll('.mobile-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 const mobileMenu = document.querySelector('.mobile-menu');
@@ -1159,7 +1156,7 @@
             });
         });
 
-        // Close menu when clicking outside
+        // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             const mobileMenu = document.querySelector('.mobile-menu');
             const hamburger = document.querySelector('.hamburger');
@@ -1173,7 +1170,7 @@
             }
         });
 
-        // Fix iOS background-attachment: fixed issue
+        // Fix for iOS background-attachment: fixed
         if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
             const hero = document.querySelector('.hero');
             if (hero) {
