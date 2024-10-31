@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubhouses - The Hideout Golf Club</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :root {
+            --bg-dark: rgba(0, 0, 0, 0.85);
+            --gold: #c9a95c;
+        }
+
+        .navbar {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            padding: 1rem 4rem;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 200px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .nav-left {
+            justify-content: flex-end;
+        }
+
+        .nav-right {
+            justify-content: flex-start;
+        }
+
+        .nav-button {
+            text-decoration: none;
+            color: #fff;
+            font-size: 1rem;
+            text-transform: uppercase;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem;
+        }
+
+        .nav-button::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 50%;
+            background: var(--gold);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+
+        .nav-button:hover::after {
+            width: 100%;
+        }
+
+        .nav-button:hover {
+            color: var(--gold);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1000;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 30px;
+            height: 2px;
+            background: white;
+            transition: transform 0.3s ease-in-out,
+                        opacity 0.2s ease-in-out;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 80px 2rem 2rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66d9b99e4bb8a94f5afba5c1.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 60px;
+        }
+
+        .main-content {
+            padding: 0 5%;
+            color: white;
+            text-align: center;
+            max-width: 1800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+
+        .location-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .location-card {
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .location-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .location-title {
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .location-image {
+            width: 100%;
+            height: 300px;
+            background: #333;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .location-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .location-video {
+            width: 100%;
+            height: 300px;
+            background: #333;
+            margin: 1rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .location-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .location-details {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .location-details h3 {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .location-details p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .amenities-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .amenity-item::before {
+            content: '•';
+            color: var(--gold);
+        }
+
+        @media (max-width: 992px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-left, .nav-right {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .navbar {
+                padding: 0.8rem 1.5rem;
+                justify-content: space-between;
+            }
+
+            .logo img {
+                width: 160px;
+                height: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .location-sections {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .location-image, .location-video {
+                height: 250px;
+            }
+
+            .amenities-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
+        </div>
+        <div class="nav-left">
+            <a href="who_we_are.html" class="nav-button">WHO WE ARE</a>
+            <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
+        </div>
+        <div class="nav-right">
+            <a href="#" class="nav-button">CONTACT US</a>
+            <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="mobile-menu">
+        <a href="who_we_are.html" class="nav-button">WHO WE ARE</a>
+        <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
+        <a href="#" class="nav-button">CONTACT US</a>
+        <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
+    </div>
+
+    <section class="hero">
+        <div class="main-content">
+            <h1 class="hero-title">Our Locations</h1>
+            
+            <div class="location-sections">
+                <div class="location-card">
+                    <h2 class="location-title">Sylvan Park</h2>
+                    <div class="location-image">
+                        <img src="https://placehold.co/800x600/333/666?text=Sylvan+Park+Location" alt="Sylvan Park Location">
+                    </div>
+                    <div class="location-video">
+                        <video controls muted loop playsinline>
+                            <source src="https://placehold.co/800x600.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="location-details">
+                        <h3>About This Location</h3>
+                        <p>Our Sylvan Park location offers state-of-the-art golf training facilities in a convenient West Nashville setting. This modern facility is designed to help golfers of all skill levels improve their game.</p>
+                        
+                        <h3>Amenities</h3>
+                        <div class="amenities-list">
+                            <div class="amenity-item">TrackMan Technology</div>
+                            <div class="amenity-item">Putting Lab</div>
+                            <div class="amenity-item">Pro Shop</div>
+                            <div class="amenity-item">Lounge Area</div>
+                            <div class="amenity-item">Training Bays</div>
+                            <div class="amenity-item">Co-working Space</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <h2 class="location-title">8th Ave</h2>
+                    <div class="location-image">
+                        <img src="https://placehold.co/800x600/333/666?text=8th+Ave+Location" alt="8th Ave Location">
+                    </div>
+                    <div class="location-video">
+                        <video controls muted loop playsinline>
+                            <source src="https://placehold.co/800x600.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="location-details">
+                        <h3>About This Location</h3>
+                        <p>Located in the heart of Nashville, our 8th Ave facility combines premium golf training technology with urban convenience. Experience golf excellence in a sophisticated environment.</p>
+                        
+                        <h3>Amenities</h3>
+                        <div class="amenities-list">
+                            <div class="amenity-item">TrackMan Bays</div>
+                            <div class="amenity-item">Practice Green</div>
+                            <div class="amenity-item">Golf Shop</div>
+                            <div class="amenity-item">Members Lounge</div>
+                            <div class="amenity-item">Fitness Area</div>
+                            <div class="amenity-item">Meeting Rooms</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.querySelector('.mobile-menu');
+                const hamburger = document.querySelector('.hamburger');
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (mobileMenu.classList.contains('active') && 
+                !mobileMenu.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.backgroundAttachment = 'scroll';
+            }
+        }
+    </script>
+</body>
+</html>
