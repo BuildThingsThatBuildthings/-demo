@@ -136,7 +136,8 @@
 
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66f436d2235a9568e502f800.png');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66d9bfcfab806e4f8634cb45.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -425,6 +426,25 @@
                 height: 200px;
             }
         }
+
+        body {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66d9bfcfab806e4f8634cb45.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Add iOS-specific fix */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                background-attachment: scroll;
+            }
+        }
     </style>
 </head>
 <body>
@@ -494,7 +514,7 @@
                     <div class="profile-info">
                         <h3 class="profile-name">Errol Helling</h3>
                         <h4 class="profile-title">Founder & Owner</h4>
-                        <p class="profile-bio">With over 20 years of experience in the golf industry, Errol's vision was to create a space where technology meets tradition. As the PGA Tour Operations and TrackMan University instructor for TrackMan Golf, he brings unparalleled expertise to The Hideout. From on Whit Turnbow's staff as the program's Trackman Specialist to starting Profectus Golf Acadamey Errol is Nashville golf through and through. Lost his hand to an alligator while trying to save par...or was that Chubbs Peterson?</p>
+                        <p class="profile-bio">With over 20 years of experience in the golf industry, Errol's vision was to create a space where technology meets tradition. As the PGA Tour Operations and TrackMan University instructor for TrackMan Golf, he brings unparalleled expertise to The Hideout.  From coaching at MTSU on Whit Turnbow's staff acting as the program's Trackman Specialist to starting Profectus Golf Acadamey Errol is Nashville golf through and through. Fun Fact he did lose his hand to an alligator while trying to save par...or was that Chubbs Peterson?</p>
                     </div>
                 </div>
                 <div class="profile-card">
