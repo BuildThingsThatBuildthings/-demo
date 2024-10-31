@@ -29,7 +29,7 @@ contact_us.html
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            min-height: 100vh;
+            min-height: 150vh;
             color: var(--text-primary);
             margin: 0;
             padding: 0;
@@ -45,7 +45,7 @@ contact_us.html
             border: 1px solid rgba(255,255,255,0.1);
             position: relative;
             top: 120px;
-            margin-bottom: 200px;
+            margin-bottom: 400px;
             animation: glow 2s ease-in-out infinite alternate;
             box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); /* Initial gold glow */
         }
@@ -310,6 +310,18 @@ contact_us.html
             font-size: 1.1rem;
             color: var(--text-primary);
         }
+
+        /* Add more space at the bottom */
+        main {
+            padding-bottom: 200px; /* Increased padding */
+            min-height: 150vh; /* Match body height */
+        }
+
+        /* Optional: Add a spacer div at the bottom */
+        .bottom-spacer {
+            height: 200px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -377,6 +389,8 @@ contact_us.html
             <button type="submit">Submit</button>
         </form>
     </div>
+    <div class="bottom-spacer"></div>
+</main>
 
     <script>
         // Remove any reset event listeners
