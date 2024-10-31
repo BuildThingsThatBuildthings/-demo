@@ -22,8 +22,8 @@
         }
 
         .navbar {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
             padding: 1rem 4rem;
             background: rgba(0, 0, 0, 0.9);
@@ -32,6 +32,13 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            gap: 2rem;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .logo img {
@@ -44,9 +51,15 @@
         .nav-left, .nav-right {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 4rem;
-            flex: 1;
+        }
+
+        .nav-left {
+            justify-content: flex-end;
+        }
+
+        .nav-right {
+            justify-content: flex-start;
         }
 
         .nav-button {
@@ -172,6 +185,9 @@
             margin: 3rem 0;
             align-items: stretch;
             min-height: 600px;
+            background: transparent;
+            position: relative;
+            z-index: 1;
         }
 
         .video-section, .booking-section {
@@ -219,18 +235,23 @@
 
         .calendly-inline-widget {
             flex: 1;
+            min-width: 320px !important;
+            height: 700px !important;
             min-height: 500px !important;
             background: transparent !important;
             border-radius: 8px;
             overflow: hidden;
+            position: relative;
+            z-index: 3;
         }
 
         .calendly-inline-widget iframe {
             width: 100% !important;
             height: 100% !important;
             background: transparent !important;
-            filter: brightness(1.1);
-            border: none;
+            border: none !important;
+            position: relative !important;
+            z-index: 4;
         }
 
         .features-section {
@@ -698,7 +719,102 @@
         .feature-item:hover {
             transform: translateY(-2px);
         }
+
+        /* Update calendar section styles */
+        .calendar-section {
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            color: white;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            height: 600px;
+        }
+
+        .calendar-header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 5;
+            background: var(--bg-dark);
+            padding-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .booking-tagline {
+            text-align: center;
+            width: 100%;
+        }
+
+        .calendly-inline-widget {
+            position: relative;
+            width: 100% !important;
+            height: 700px !important;
+            background: transparent !important;
+            transform: scale(0.7);
+            transform-origin: top center;
+            margin-top: -40px;
+            overflow: hidden !important;
+            -webkit-overflow-scrolling: touch !important;
+        }
+
+        /* Hide all possible scrollbars */
+        .calendar-section,
+        .calendly-inline-widget,
+        .calendly-inline-widget iframe {
+            -ms-overflow-style: none !important;  /* IE and Edge */
+            overflow: -moz-scrollbars-none !important;  /* Old Firefox */
+            overflow: hidden
+        }
+
+        /* Add after the features-section div */
+        .bottom-image {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .bottom-image img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+
+        /* Update location popup styles */
+        .location-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .location-image {
+            width: 100%;
+            max-width: 400px;  /* Limit maximum width */
+            margin: 0 auto;  /* Center the image */
+        }
+
+        .location-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            object-fit: contain;  /* Maintain aspect ratio */
+        }
     </style>
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -741,13 +857,15 @@
                     <h2 class="section-title">MESSAGE FROM THE OWNER</h2>
                 </div>
                 
-                <div class="booking-section">
-                    <h2 class="section-title">ONE DAY MEMBERSHIP</h2>
-                    <h3 class="booking-tagline">A New Way To Live A <span class="glow-text">Golf Life</span></h3>
-                    <div class="calendly-inline-widget" 
-                        data-url="https://calendly.com/hideoutgolf/member-for-a-day?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=c9a95c&hide_event_type_details=1&hide_landing_page_details=1&hide_gdpr_banner=1&month_view=true">
+                <div class="calendar-section">
+                    <div class="calendar-header">
+                        <h2 class="section-title">ONE DAY MEMBERSHIP</h2>
+                        <h3 class="booking-tagline">A New Way To Live A <span class="glow-text">Golf Life</span></h3>
                     </div>
-                    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                    <div 
+                        class="calendly-inline-widget" 
+                        data-url="https://calendly.com/hideoutgolf/call?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=c9a95c&hide_event_type_details=1&hide_landing_page_details=1&month_view=true"
+                    ></div>
                 </div>
             </div>
 
@@ -791,6 +909,11 @@
                         <p>and so much more!</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Add after the features-section div -->
+            <div class="bottom-image">
+                <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66e350c1ef38a5b8b451ac9f.png" alt="Hideout Golf Club Footer">
             </div>
         </div>
     </section>
@@ -844,8 +967,23 @@
         // Popup content for each feature
         const featureDetails = {
             'Access to 2 locations': {
-                title: 'Access to 2 locations',
-                description: 'Enjoy unlimited access to both our North and South Austin locations. Each facility is equipped with state-of-the-art technology and amenities to enhance your golf experience.'
+                title: 'Two Premier Nashville Locations',
+                description: `
+                    <div class="location-content">
+                        <div class="location-image">
+                            <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66d9b99e4bb8a94f5afba5c1.png" alt="Hideout Golf Club Locations">
+                        </div>
+                        <div class="location-text">
+                            <p><strong>North Nashville Location:</strong><br>
+                            [Address here]<br>
+                            [Brief description of North location]</p>
+                            
+                            <p><strong>South Nashville Location:</strong><br>
+                            [Address here]<br>
+                            [Brief description of South location]</p>
+                        </div>
+                    </div>
+                `
             },
             'Trackman Technology': {
                 title: 'Trackman Technology',
@@ -877,7 +1015,7 @@
         function showPopup(title, description) {
             const overlay = document.getElementById('popupOverlay');
             overlay.querySelector('.popup-title').textContent = title;
-            overlay.querySelector('.popup-description').textContent = description;
+            overlay.querySelector('.popup-description').innerHTML = description;
             overlay.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -899,6 +1037,14 @@
             if (e.key === 'Escape') {
                 closePopup();
             }
+        });
+
+        // Add this with your other scripts
+        document.addEventListener('DOMContentLoaded', function() {
+            Calendly.initInlineWidget({
+                url: 'https://calendly.com/hideoutgolf/call',
+                parentElement: document.querySelector('.calendly-inline-widget')
+            });
         });
     </script>
 
