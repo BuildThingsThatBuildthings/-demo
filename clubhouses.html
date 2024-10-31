@@ -258,41 +258,70 @@
         }
 
         @media (max-width: 992px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-left, .nav-right {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: flex;
-            }
-
             .navbar {
-                padding: 0.8rem 1.5rem;
-                justify-content: space-between;
+                grid-template-columns: auto auto;
+                padding: 1rem 2rem;
+                gap: 1rem;
             }
 
             .logo img {
                 width: 160px;
                 height: 32px;
             }
-        }
 
-        @media (max-width: 768px) {
+            .nav-left, .nav-right {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
             .location-sections {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
+        }
 
-            .location-image, .location-video {
-                height: 250px;
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: clamp(2.5rem, 6vw, 4rem);
+            }
+
+            .location-title {
+                font-size: 1.5rem;
+            }
+
+            .location-image, 
+            .location-video {
+                height: 200px;
             }
 
             .amenities-list {
                 grid-template-columns: 1fr;
+            }
+
+            .location-details h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo img {
+                width: 140px;
+                height: 28px;
+            }
+
+            .location-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -300,11 +329,13 @@
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
+            <a href="index.html">
+                <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
+            </a>
         </div>
         <div class="nav-left">
+            <a href="index.html" class="nav-button">HOME</a>
             <a href="who_we_are.html" class="nav-button">WHO WE ARE</a>
-            <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
         </div>
         <div class="nav-right">
             <a href="#" class="nav-button">CONTACT US</a>
@@ -318,8 +349,8 @@
     </nav>
 
     <div class="mobile-menu">
+        <a href="index.html" class="nav-button">HOME</a>
         <a href="who_we_are.html" class="nav-button">WHO WE ARE</a>
-        <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
         <a href="#" class="nav-button">CONTACT US</a>
         <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
     </div>
