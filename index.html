@@ -96,21 +96,33 @@
 
         .hamburger {
             display: none;
-            flex-direction: column;
-            gap: 6px;
             cursor: pointer;
-            padding: 10px;
-            z-index: 1000;
+            width: 30px;
+            height: 25px;
             position: relative;
+            margin-right: 15px;
         }
 
-        .hamburger span {
-            display: block;
+        .bar1, .bar2, .bar3 {
             width: 30px;
-            height: 2px;
-            background: white;
-            transition: transform 0.3s ease-in-out,
-                        opacity 0.2s ease-in-out;
+            height: 3px;
+            background-color: var(--text-primary);
+            margin: 6px 0;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+
+        /* Hamburger Animation */
+        .hamburger.active .bar1 {
+            transform: translate(0, 9px) rotate(-45deg);
+        }
+
+        .hamburger.active .bar2 {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar3 {
+            transform: translate(0, -9px) rotate(45deg);
         }
 
         .mobile-menu {
@@ -894,10 +906,10 @@
             <a href="contact_us.html" class="nav-button">CONTACT US</a>
             <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
         </div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="hamburger">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
         </div>
     </nav>
 
@@ -1110,6 +1122,26 @@
                 url: 'https://calendly.com/hideoutgolf/call',
                 parentElement: document.querySelector('.calendly-inline-widget')
             });
+        });
+
+        // Mobile menu functionality
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     </script>
 
