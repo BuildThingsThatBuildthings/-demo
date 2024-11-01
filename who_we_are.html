@@ -699,6 +699,24 @@
                 font-size: 13px;
             }
         }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 992px) {
+            .mobile-menu {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
@@ -719,9 +737,9 @@
                     <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
                 </div>
                 <div class="hamburger">
-                    <div class="bar1"></div>
-                    <div class="bar2"></div>
-                    <div class="bar3"></div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </nav>
         </header>
@@ -970,6 +988,22 @@
             if (e.key === 'Escape') {
                 closePopup();
             }
+        });
+
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Optional: Close menu when clicking a link
+        document.querySelectorAll('.mobile-menu .nav-button').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
         });
     </script>
 </body>
