@@ -25,14 +25,14 @@
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            padding: 1rem 4rem;
+            padding: 1rem 2rem;
             background: rgba(0, 0, 0, 0.9);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            gap: 2rem;
+            gap: 1rem;
         }
 
         .logo {
@@ -51,7 +51,7 @@
         .nav-left, .nav-right {
             display: flex;
             align-items: center;
-            gap: 4rem;
+            gap: 2rem;
         }
 
         .nav-left {
@@ -65,10 +65,10 @@
         .nav-button {
             text-decoration: none;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             font-weight: 400;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             transition: all 0.3s;
             position: relative;
             padding: 0.5rem;
@@ -218,11 +218,12 @@
             background: transparent;
             position: relative;
             z-index: 1;
+            padding-top: 2rem;
         }
 
-        .video-section, .booking-section {
+        .video-section, .calendar-section {
             background: var(--bg-dark);
-            padding: 2rem;
+            padding: 2rem 5px;
             border-radius: 12px;
             color: white;
             backdrop-filter: blur(10px);
@@ -232,9 +233,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 1px solid rgba(255,255,255,0.1);
             transition: transform 0.3s ease;
+            height: 100%;
         }
 
-        .video-section:hover, .booking-section:hover {
+        .video-section:hover, .calendar-section:hover {
             transform: translateY(-5px);
         }
 
@@ -254,6 +256,8 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
         }
 
         .video-placeholder video {
@@ -265,19 +269,23 @@
 
         .calendly-inline-widget {
             flex: 1;
-            min-width: 320px !important;
-            height: 700px !important;
-            min-height: 500px !important;
+            min-width: calc(100% - 10px);
+            height: 750px !important;
+            width: calc(100% - 10px) !important;
+            margin: 0 auto;
             background: transparent !important;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            z-index: 3;
+            transform: scale(0.7);
+            transform-origin: top center;
+            margin-top: -40px;
+            overflow: hidden !important;
+            -webkit-overflow-scrolling: touch !important;
+            top: 40px;
         }
 
         .calendly-inline-widget iframe {
-            width: 100% !important;
             height: 100% !important;
+            width: 100% !important;
+            min-height: 750px !important;
             background: transparent !important;
             border: none !important;
             position: relative !important;
@@ -316,6 +324,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/golf-club-cursor.png') 0 20, pointer;
         }
 
         .feature-item::before {
@@ -334,6 +343,7 @@
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.08);
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
         }
 
         .feature-item:hover::before {
@@ -386,7 +396,7 @@
                 gap: 2rem;
             }
 
-            .video-section, .booking-section {
+            .video-section, .calendar-section {
                 padding: 1.8rem;
             }
 
@@ -424,7 +434,7 @@
                 margin: 2rem 0;
             }
 
-            .video-section, .booking-section {
+            .video-section, .calendar-section {
                 min-height: 450px;
             }
 
@@ -450,7 +460,7 @@
         }
 
         @media (max-width: 480px) {
-            .video-section, .booking-section {
+            .video-section, .calendar-section {
                 min-height: 400px;
                 padding: 1.2rem;
             }
@@ -475,285 +485,9 @@
         }
 
         /* Container styles */
-        .booking-section {
-            flex: 1;
-            background: var(--bg-dark);
-            padding: 2rem;
-            border-radius: 12px;
-            color: white;
-            backdrop-filter: blur(10px);
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .booking-tagline {
-            color: var(--gold);
-            font-size: 1.2rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            position: absolute;
-            top: 2rem;  /* Position at top of container */
-            text-align: center;
-            z-index: 2;
-        }
-
-        /* Calendar specific adjustments */
-        .calendly-inline-widget {
-            width: 100% !important;
-            height: 650px !important;
-            margin-top: -40px;
-            background: transparent !important;
-            transform: scale(0.75);
-            transform-origin: center center;
-            position: relative;
-            top: 1.5rem;
-        }
-
-        .calendly-inline-widget iframe {
-            width: 100% !important;
-            height: 750px !important;
-            background: transparent !important;
-            filter: brightness(0.9);
-            border: none;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .booking-section {
-                height: 500px;
-                padding: 1.5rem;
-            }
-
-            .calendly-inline-widget {
-                height: 600px !important;
-                transform: scale(0.65);
-                margin-top: -60px;
-            }
-
-            .calendly-inline-widget iframe {
-                height: 700px !important;
-            }
-        }
-
-        /* Header and tagline styles */
-        .booking-section {
-            position: relative;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold);
-            margin-bottom: 1rem;
-            position: absolute;
-            top: 1rem;
-            text-align: center;
-            z-index: 2;
-        }
-
-        .booking-tagline {
-            font-size: 1.8rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            position: absolute;
-            top: 3.5rem;
-            text-align: center;
-            z-index: 2;
-            color: var(--text-primary);
-        }
-
-        .glow-text {
-            color: var(--text-primary);
-            text-shadow: 0 0 10px var(--accent-glow),
-                        0 0 20px var(--accent-glow),
-                        0 0 30px var(--accent-glow);
-        }
-
-        /* Video section styles */
-        .video-section {
-            flex: 1;
-            background: var(--bg-dark);
-            padding: 2rem;
-            border-radius: 12px;
-            color: white;
-            backdrop-filter: blur(10px);
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .video-placeholder {
-            width: 100%;
-            flex-grow: 1;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-        }
-
-        .video-placeholder video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .video-section .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold);
-            text-align: center;
-            padding-bottom: 0.5rem;
-            position: static;
-        }
-
-        /* Mobile-specific adjustments */
-        @media (max-width: 768px) {
-            .booking-section {
-                height: 500px;
-                padding: 1rem;
-            }
-
-            .section-title {
-                font-size: 1rem;
-                top: 0.5rem;
-            }
-
-            .booking-tagline {
-                font-size: 1.4rem;
-                top: 2.5rem;
-            }
-
-            .calendly-inline-widget {
-                height: 600px !important;
-                transform: scale(0.65);
-                margin-top: -40px;
-                top: 2rem;  /* Adjusted to prevent overlap with header */
-            }
-
-            .calendly-inline-widget iframe {
-                height: 700px !important;
-            }
-        }
-
-        /* Even smaller screens */
-        @media (max-width: 480px) {
-            .booking-tagline {
-                font-size: 1.2rem;
-                top: 2.2rem;
-            }
-
-            .calendly-inline-widget {
-                transform: scale(0.6);
-                top: 2.5rem;
-            }
-        }
-
-        /* Remove any other glow-related styles that might be overriding */
-        .hero-title .glow-text,
-        .booking-tagline .glow-text {
-            color: #000000 !important;
-            font-weight: 800 !important;
-            text-transform: none;
-            position: relative;
-            text-shadow: 
-                -1px -1px 0 #ffffff,
-                1px -1px 0 #ffffff,
-                -1px 1px 0 #ffffff,
-                1px 1px 0 #ffffff,
-                2px 2px 0 rgba(255, 255, 255, 1),
-                3px 3px 0 rgba(200, 200, 200, 1);
-            letter-spacing: 1px;
-        }
-
-        .video-placeholder {
-            position: relative;
-        }
-
-        .mute-toggle {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.6);
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-        }
-
-        /* Popup styles */
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .popup-content {
-            background: var(--bg-dark);
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            border: 1px solid var(--gold);
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .popup-title {
-            color: var(--gold);
-            margin-bottom: 1rem;
-            padding-right: 20px;
-        }
-
-        .popup-description {
-            color: white;
-            line-height: 1.6;
-        }
-
-        .feature-item {
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .feature-item:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Update calendar section styles */
         .calendar-section {
             background: var(--bg-dark);
-            padding: 2rem;
+            padding: 2rem 5px;
             border-radius: 12px;
             color: white;
             backdrop-filter: blur(10px);
@@ -765,19 +499,23 @@
             border: 1px solid rgba(255,255,255,0.1);
             overflow: hidden;
             height: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
         }
 
         .calendar-header {
             width: 100%;
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 1.5rem;
             position: relative;
             z-index: 5;
             background: var(--bg-dark);
-            padding-bottom: 1rem;
+            padding: 0 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding-top: 20px;
         }
 
         .section-title {
@@ -792,15 +530,28 @@
         }
 
         .calendly-inline-widget {
-            position: relative;
-            width: 100% !important;
-            height: 700px !important;
+            flex: 1;
+            min-width: calc(100% - 10px);
+            height: 750px !important;
+            width: calc(100% - 10px) !important;
+            margin: 0 auto;
             background: transparent !important;
             transform: scale(0.7);
             transform-origin: top center;
             margin-top: -40px;
             overflow: hidden !important;
             -webkit-overflow-scrolling: touch !important;
+            top: 40px;
+        }
+
+        .calendly-inline-widget iframe {
+            height: 100% !important;
+            width: 100% !important;
+            min-height: 750px !important;
+            background: transparent !important;
+            border: none !important;
+            position: relative !important;
+            z-index: 4;
         }
 
         /* Hide all possible scrollbars */
@@ -1052,6 +803,117 @@
                 display: block;
             }
         }
+
+        /* Add this right after the bottom-image div */
+        .cta-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: black;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .cta-button:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(201, 169, 92, 0.4);
+            filter: brightness(1.1); /* Makes the gold slightly brighter instead of transparent */
+        }
+
+        /* Update Calendly iframe if needed */
+        .calendly-inline-widget iframe {
+            height: 100% !important;
+            width: 100% !important;
+            min-height: 650px !important;
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .popup-content {
+            background: var(--bg-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            border: 1px solid rgba(201, 169, 92, 0.3);
+            color: white;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .popup-title {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .popup-description {
+            line-height: 1.6;
+        }
+
+        .join-button {
+            background: var(--gold);
+            color: black;
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-left: 1rem;
+        }
+
+        .join-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(201, 169, 92, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* Update mobile styles */
+        @media (max-width: 768px) {
+            .join-button {
+                padding: 0.6rem 1rem;
+                font-size: 12px;
+                margin-left: 1rem;
+            }
+        }
     </style>
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
 </head>
@@ -1069,6 +931,7 @@
         <div class="nav-right">
             <a href="contact_us.html" class="nav-button">CONTACT US</a>
             <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
+            <a href="#" class="join-button" onclick="scrollToCalendar()">JOIN TODAY</a>
         </div>
         <div class="hamburger">
             <div class="bar1"></div>
@@ -1083,6 +946,7 @@
         <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
         <a href="contact_us.html" class="nav-button">CONTACT US</a>
         <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
+        <a href="#" class="join-button" onclick="scrollToCalendar()">JOIN TODAY</a>
     </div>
 
     <section class="hero">
@@ -1156,6 +1020,13 @@
             <!-- Add after the features-section div -->
             <div class="bottom-image">
                 <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66e350c1ef38a5b8b451ac9f.png" alt="Hideout Golf Club Footer">
+            </div>
+
+            <!-- Add this right after the bottom-image div -->
+            <div class="cta-section">
+                <a href="#" class="cta-button" onclick="scrollToCalendar()">
+                    JOIN TODAY
+                </a>
             </div>
         </div>
     </section>
@@ -1270,7 +1141,7 @@
         // Update feature items to be clickable
         document.querySelectorAll('.feature-item').forEach(item => {
             item.addEventListener('click', () => {
-                const text = item.textContent.trim();
+                const text = item.querySelector('p').textContent.trim();
                 const details = featureDetails[text] || {
                     title: text,
                     description: 'More details coming soon...'
@@ -1281,6 +1152,8 @@
 
         function showPopup(title, description) {
             const overlay = document.getElementById('popupOverlay');
+            if (!overlay) return;
+            
             overlay.querySelector('.popup-title').textContent = title;
             overlay.querySelector('.popup-description').innerHTML = description;
             overlay.style.display = 'flex';
@@ -1288,13 +1161,17 @@
         }
 
         function closePopup() {
-            document.getElementById('popupOverlay').style.display = 'none';
+            const overlay = document.getElementById('popupOverlay');
+            if (!overlay) return;
+            
+            overlay.style.display = 'none';
             document.body.style.overflow = '';
         }
 
         // Close popup when clicking outside
-        document.getElementById('popupOverlay').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
+        document.addEventListener('click', (e) => {
+            const overlay = document.getElementById('popupOverlay');
+            if (overlay && e.target === overlay) {
                 closePopup();
             }
         });
@@ -1313,12 +1190,27 @@
                 parentElement: document.querySelector('.calendly-inline-widget')
             });
         });
+
+        // Add this function to your scripts
+        function scrollToCalendar() {
+            const calendlyWidget = document.querySelector('.calendly-inline-widget');
+            const sectionBottom = calendlyWidget.offsetTop + calendlyWidget.offsetHeight;
+            const viewportHeight = window.innerHeight;
+            const offsetPosition = sectionBottom - (viewportHeight / 2);
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+            
+            return false;
+        }
     </script>
 
     <!-- Add this right before the closing body tag -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-content">
-            <button class="popup-close" onclick="closePopup()">×</button>
+            <button class="popup-close" onclick="closePopup()">&times;</button>
             <h3 class="popup-title"></h3>
             <div class="popup-description"></div>
         </div>
