@@ -22,8 +22,8 @@
         }
 
         .navbar {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            display: flex;
+            justify-content: flex-start;
             align-items: center;
             padding: 1rem 2rem;
             background: rgba(0, 0, 0, 0.9);
@@ -32,13 +32,11 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            gap: 1rem;
         }
 
         .logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            flex: 0 0 auto;
+            margin-right: auto;
         }
 
         .logo img {
@@ -48,18 +46,12 @@
             filter: brightness(0) invert(1);
         }
 
-        .nav-left, .nav-right {
+        .nav-items {
             display: flex;
             align-items: center;
             gap: 2rem;
-        }
-
-        .nav-left {
-            justify-content: flex-end;
-        }
-
-        .nav-right {
-            justify-content: flex-start;
+            margin-left: auto;
+            padding-right: 5rem;
         }
 
         .nav-button {
@@ -924,11 +916,9 @@
                 <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
             </a>
         </div>
-        <div class="nav-left">
+        <div class="nav-items">
             <a href="who_we_are.html" class="nav-button">WHO WE ARE</a>
             <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
-        </div>
-        <div class="nav-right">
             <a href="contact_us.html" class="nav-button">CONTACT US</a>
             <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
             <a href="#" class="join-button" onclick="scrollToCalendar()">JOIN TODAY</a>
