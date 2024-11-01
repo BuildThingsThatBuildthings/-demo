@@ -135,28 +135,47 @@
         }
 
         .hero {
-            min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+            position: relative;
+            min-height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
                 url('https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66d9bfcfab806e4f8634cb45.jpeg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            padding: 120px 0 60px;
+            padding-top: 0;
             color: white;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .hero-content {
+            padding-top: 120px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 120px 20px 60px;
         }
 
         .main-content {
             padding: 0 5%;
             max-width: 1800px;
-            margin: 0 auto;
+            margin: -80px auto 0;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
 
         .history-section {
             background: var(--bg-dark);
             padding: 3rem;
             border-radius: 12px;
-            margin: 2rem 0;
+            margin: 0;
             border: 1px solid rgba(255,255,255,0.1);
         }
 
@@ -169,68 +188,82 @@
 
         .timeline {
             position: relative;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         .timeline::after {
             content: '';
             position: absolute;
-            width: 2px;
-            background: var(--gold);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1px;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                rgba(201, 169, 92, 0),
+                rgba(201, 169, 92, 1) 20%,
+                rgba(201, 169, 92, 1) 80%,
+                rgba(201, 169, 92, 0)
+            );
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            box-shadow: 0 0 15px rgba(201, 169, 92, 0.5);
         }
 
         .timeline-item {
-            padding: 1rem 2rem;
+            flex: 1;
             position: relative;
-            width: 50%;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--gold);
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
+            z-index: 1;
+            min-width: 100px;
+            display: flex;
+            justify-content: center;
         }
 
         .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
+            align-items: flex-start;
+            padding-bottom: 40px;
         }
 
         .timeline-item:nth-child(even) {
-            left: 50%;
-            text-align: left;
+            align-items: flex-end;
+            padding-top: 40px;
         }
 
-        .timeline-item:nth-child(odd)::after {
-            right: -10px;
+        .logo-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(201, 169, 92, 0.3);
+            box-shadow: 0 0 20px rgba(201, 169, 92, 0.2);
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .timeline-item:nth-child(even)::after {
-            left: -10px;
+        .timeline-logo {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
         }
 
-        .timeline-content {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 8px;
+        .logo-circle:hover {
+            transform: scale(1.15);
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(201, 169, 92, 0.4);
         }
 
-        .timeline-date {
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        .logo-circle:hover .timeline-logo {
+            opacity: 1;
         }
 
         .profiles-section {
@@ -361,31 +394,32 @@
                 display: flex;
             }
 
+            .timeline {
+                flex-direction: column;
+                gap: 3rem;
+                padding: 2rem 0;
+            }
+
             .timeline::after {
-                left: 31px;
+                width: 2px;
+                height: 100%;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
             }
 
             .timeline-item {
                 width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
             }
 
-            .timeline-item:nth-child(odd) {
-                text-align: left;
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                padding: 1.5rem;
             }
 
-            .timeline-item:nth-child(odd)::after {
-                left: 21px;
-                right: auto;
-            }
-
-            .timeline-item:nth-child(even) {
-                left: 0;
-            }
-
-            .timeline-item:nth-child(even)::after {
-                left: 21px;
+            .timeline-content {
+                width: 80%;
+                margin: 0 auto;
             }
         }
 
@@ -445,205 +479,456 @@
                 background-attachment: scroll;
             }
         }
+
+        /* Timeline popup styles */
+        .timeline-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .timeline-popup.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: var(--bg-dark);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 90%;
+            position: relative;
+            border: 1px solid rgba(201, 169, 92, 0.3);
+            box-shadow: 0 0 30px rgba(201, 169, 92, 0.2);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+            z-index: 2;
+        }
+
+        .popup-body {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .popup-media {
+            flex: 0 0 200px;
+        }
+
+        .popup-media img,
+        .popup-media video {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-media img {
+            padding: 15px;
+        }
+
+        .popup-info {
+            flex: 1;
+        }
+
+        .popup-title {
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-year {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .popup-description {
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Add this specific adjustment for the first logo */
+        .timeline-item:first-child .timeline-logo {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+            transform: translateX(-5px); /* Move left within circle */
+        }
+
+        /* Keep the general logo styles for others */
+        .timeline-logo {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        /* Adjust the last logo if needed */
+        .timeline-item:last-child .timeline-logo {
+            width: 85%;
+            height: 85%;
+        }
+
+        .timeline-logo.future-logo {
+            width: 85%;
+            height: 85%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        .timeline-logo.first-logo {
+            width: 75%;
+            height: 75%;
+            transform: translateX(-5px);
+        }
+
+        /* Add specific styles for the future logo */
+        .future-logo {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+            filter: none !important;
+            opacity: 1;
+        }
+
+        .popup-media video {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .popup-content {
+            max-width: 700px; /* Adjusted for single video */
+        }
+
+        /* Keep the filter for the first three logos */
+        .timeline-logo {
+            width: 75%;
+            height: 75%;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+
+        /* Remove filter for the fourth logo */
+        .timeline-item:last-child .timeline-logo {
+            filter: none;
+        }
+
+        .header-link {
+            color: var(--gold);
+            text-decoration: none;
+            font-family: var(--font-heading);
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 2.4px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .header-link:hover {
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <a href="index.html">
-                <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
-            </a>
+    <div class="hero">
+        <header>
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="/">
+                        <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66fdcb6a7fa05f62cc6f66ad.png" alt="The Hideout Golf Club">
+                    </a>
+                </div>
+                <div class="nav-left">
+                    <a href="/" class="header-link">HOME</a>
+                    <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
+                </div>
+                <div class="nav-right">
+                    <a href="contact_us.html" class="nav-button">CONTACT US</a>
+                    <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
+                </div>
+                <div class="hamburger">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+            </nav>
+        </header>
+        <div class="hero-content">
+            <h1>WHO WE ARE</h1>
+            <p>The Hideout Represents a New Way to Live a Golf Life in Nashville</p>
         </div>
-        <div class="nav-left">
-            <a href="index.html" class="nav-button">HOME</a>
-            <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
+    </div>
+
+    <div class="main-content">
+        <div class="history-section">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="logo-circle">
+                        <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66d9be264bb8a90e3dfba822.png" 
+                             alt="Profectus Golf" 
+                             class="timeline-logo">
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="logo-circle">
+                        <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66cbb485d6d90be8f7143b41.png" 
+                             alt="Hideout Sylvan" 
+                             class="timeline-logo">
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="logo-circle">
+                        <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66cbb485d6d90be8f7143b41.png" 
+                             alt="Hideout 8th" 
+                             class="timeline-logo">
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="logo-circle">
+                        <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/672433ab834a024c0b884f06.png" 
+                             alt="Future" 
+                             class="timeline-logo">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="nav-right">
-            <a href="contact_us.html" class="nav-button">CONTACT US</a>
-            <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
+
+        <div class="profiles-section">
+            <div class="profile-card">
+                <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/6722c5555576cf21a4fd1cb8.jpeg" alt="Errol Helling" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Errol Helling</h3>
+                    <h4 class="profile-title">Founder & Owner</h4>
+                    <p class="profile-bio">With over 20 years of experience in the golf industry, Errol's vision was to create a space where technology meets tradition. As the PGA Tour Operations and TrackMan University instructor for TrackMan Golf, he brings unparalleled expertise to The Hideout.  From coaching at MTSU on Whit Turnbow's staff acting as the program's Trackman Specialist to starting Profectus Golf Acadamey Errol is Nashville golf through and through. Fun Fact he did lose his hand to an alligator while trying to save par...or was that Chubbs Peterson?</p>
+                </div>
+            </div>
+            <div class="profile-card">
+                <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/6722c56e5576cfaf60fd1cd9.webp" alt="Jake Finn" class="profile-image">
+                <div class="profile-info">
+                    <h3 class="profile-name">Jake Finn</h3>
+                    <h4 class="profile-title">Head Golf Professional</h4>
+                    <p class="profile-bio">A PGA certified professional with extensive teaching experience, Jake leads our instruction program. His expertise in combining traditional teaching methods with modern technology has helped countless members improve their game. As former Head Pro at Valhalla, he brings a wealth of knowledge and experience to The Hideout Golf Club. And yes, his mustache game is always on point. Only had herpes that one time.</p>
+                </div>
+            </div>
         </div>
-        <div class="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+
+        <div class="team-section">
+            <h2 class="team-title">Meet Your Clubhouse Support Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://cdn.britannica.com/64/135864-050-57268027/Nicolas-Cage-2009.jpg" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Mike Wilson</h3>
+                        <p class="team-member-bio">Golf Professional specializing in swing analysis and custom club fitting.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://pbs.twimg.com/media/E0RQRPnWYAEyL5d?format=jpg&name=medium" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Emily Davis</h3>
+                        <p class="team-member-bio">Certified instructor focusing on junior golf development programs.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://npr.brightspotcdn.com/dims4/default/77632d6/2147483647/strip/true/crop/1509x1132+0+0/resize/1760x1320!/format/webp/quality/90/?url=https%3A%2F%2Fmedia.npr.org%2Fassets%2Fimg%2F2023%2F12%2F21%2Fdreamscenario2--4a9a8bbdf0f669b89267368124380b632ab8c9db.jpg" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">David Chen</h3>
+                        <p class="team-member-bio">Technology specialist managing our TrackMan systems and virtual golf experiences.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://www.syfy.com/sites/syfy/files/styles/hero_image__large__computer__alt/public/2019/10/faceoff_cage.jpg" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Lisa Thompson</h3>
+                        <p class="team-member-bio">Member services coordinator ensuring a premium experience for all members.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.bauerhosting.com/legacy/media/6262/e2bf/209b/55c1/b411/232b/7-con-air.jpg?ar=16%3A9&fit=crop&crop=top&auto=format&w=992&q=80" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Robert Martinez</h3>
+                        <p class="team-member-bio">Equipment specialist providing expert advice on golf gear and maintenance.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://external-preview.redd.it/WOhkByCFQtCbkomzAWCy9RfCxW2WKXfbWO1jWJ8LuY4.jpg?auto=webp&s=f23367d9bf391c7bc6ecb6447d70a4c8d855f58f" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Amanda White</h3>
+                        <p class="team-member-bio">Events coordinator organizing tournaments and social gatherings.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/463375625_7926554720778961_178117601047831237_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=AMoLIYTbBm8Q7kNvgFuw0YD&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&_nc_gid=AxcDIHziLfrUOPX4OlOqrgt&oh=00_AYApiSMAOLxJzXVnUGLJTAj3CahKCfUF4j3-f3obXqxNlg&oe=67288898" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">James Taylor</h3>
+                        <p class="team-member-bio">Fitness trainer specializing in golf-specific strength and conditioning.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://i0.wp.com/daredaniel.com/wp-content/uploads/2023/08/LeftBehind-2.jpg?w=880&ssl=1" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Rachel Kim</h3>
+                        <p class="team-member-bio">Performance analyst helping members track and improve their progress.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/459395074_7662128407221595_1838025560919283442_n.png?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=UKNgaL5iQB0Q7kNvgFNWLCk&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&_nc_gid=Ax7fj_ij0tWvcE8YrQJpIMz&oh=00_AYAZz8P_oJDKPSCJvZl_v60s1zvOBBY0CTZynwyHwP3Wfw&oe=6728AA85" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Tom Anderson</h3>
+                        <p class="team-member-bio">Facility manager ensuring top-notch maintenance of all equipment and amenities.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66f436d2235a9568e502f800.png" alt="Team Member" class="team-member-image">
+                    <div class="team-member-info">
+                        <h3 class="team-member-name">Sarah Miller</h3>
+                        <p class="team-member-bio">Customer experience specialist focused on member satisfaction and engagement.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
+    </div>
 
     <div class="mobile-menu">
-        <a href="index.html" class="nav-button">HOME</a>
+        <a href="/" class="nav-button">HOME</a>
+        <a href="who_we_are.html" class="nav-button">WHO WE ARE</a>
         <a href="clubhouses.html" class="nav-button">CLUBHOUSES</a>
         <a href="contact_us.html" class="nav-button">CONTACT US</a>
         <a href="https://hideoutgolf.club/hideout-golf-club-brochure-neighbors/" class="nav-button">FULL BROCHURE</a>
     </div>
 
-    <section class="hero">
-        <div class="main-content">
-            <div class="history-section">
-                <h2 class="history-title">Our Journey</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2020</div>
-                            <p>The vision of The Hideout Golf Club takes shape as we identify the need for an innovative golf experience in Austin.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2021</div>
-                            <p>Our first location on Sylvan Road opens its doors, introducing state-of-the-art golf technology to the Austin community.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2022</div>
-                            <p>Growing community and increasing demand leads to the planning of our second location.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-date">2023</div>
-                            <p>The Hideout expands with our second location on 8th Street, bringing our unique golf experience to even more members.</p>
-                        </div>
-                    </div>
+    <div class="timeline-popup">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopup()">&times;</button>
+            <div class="popup-body">
+                <div class="popup-media">
+                    <!-- This div will contain either an image or video depending on the content -->
                 </div>
-            </div>
-
-            <div class="profiles-section">
-                <div class="profile-card">
-                    <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/6722c5555576cf21a4fd1cb8.jpeg" alt="Errol Helling" class="profile-image">
-                    <div class="profile-info">
-                        <h3 class="profile-name">Errol Helling</h3>
-                        <h4 class="profile-title">Founder & Owner</h4>
-                        <p class="profile-bio">With over 20 years of experience in the golf industry, Errol's vision was to create a space where technology meets tradition. As the PGA Tour Operations and TrackMan University instructor for TrackMan Golf, he brings unparalleled expertise to The Hideout.  From coaching at MTSU on Whit Turnbow's staff acting as the program's Trackman Specialist to starting Profectus Golf Acadamey Errol is Nashville golf through and through. Fun Fact he did lose his hand to an alligator while trying to save par...or was that Chubbs Peterson?</p>
-                    </div>
-                </div>
-                <div class="profile-card">
-                    <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/6722c56e5576cfaf60fd1cd9.webp" alt="Jake Finn" class="profile-image">
-                    <div class="profile-info">
-                        <h3 class="profile-name">Jake Finn</h3>
-                        <h4 class="profile-title">Head Golf Professional</h4>
-                        <p class="profile-bio">A PGA certified professional with extensive teaching experience, Jake leads our instruction program. His expertise in combining traditional teaching methods with modern technology has helped countless members improve their game. As former Head Pro at Valhalla, he brings a wealth of knowledge and experience to The Hideout Golf Club. And yes, his mustache game is always on point. Only had herpes that one time.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="team-section">
-                <h2 class="team-title">Meet Your Clubhouse Support Team</h2>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <img src="https://cdn.britannica.com/64/135864-050-57268027/Nicolas-Cage-2009.jpg" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">Mike Wilson</h3>
-                            <p class="team-member-bio">Golf Professional specializing in swing analysis and custom club fitting.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://pbs.twimg.com/media/E0RQRPnWYAEyL5d?format=jpg&name=medium" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">Emily Davis</h3>
-                            <p class="team-member-bio">Certified instructor focusing on junior golf development programs.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://npr.brightspotcdn.com/dims4/default/77632d6/2147483647/strip/true/crop/1509x1132+0+0/resize/1760x1320!/format/webp/quality/90/?url=https%3A%2F%2Fmedia.npr.org%2Fassets%2Fimg%2F2023%2F12%2F21%2Fdreamscenario2--4a9a8bbdf0f669b89267368124380b632ab8c9db.jpg" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">David Chen</h3>
-                            <p class="team-member-bio">Technology specialist managing our TrackMan systems and virtual golf experiences.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://www.syfy.com/sites/syfy/files/styles/hero_image__large__computer__alt/public/2019/10/faceoff_cage.jpg" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">Lisa Thompson</h3>
-                            <p class="team-member-bio">Member services coordinator ensuring a premium experience for all members.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://images.bauerhosting.com/legacy/media/6262/e2bf/209b/55c1/b411/232b/7-con-air.jpg?ar=16%3A9&fit=crop&crop=top&auto=format&w=992&q=80" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">Robert Martinez</h3>
-                            <p class="team-member-bio">Equipment specialist providing expert advice on golf gear and maintenance.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://external-preview.redd.it/WOhkByCFQtCbkomzAWCy9RfCxW2WKXfbWO1jWJ8LuY4.jpg?auto=webp&s=f23367d9bf391c7bc6ecb6447d70a4c8d855f58f" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">Amanda White</h3>
-                            <p class="team-member-bio">Events coordinator organizing tournaments and social gatherings.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/463375625_7926554720778961_178117601047831237_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=AMoLIYTbBm8Q7kNvgFuw0YD&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&_nc_gid=AxcDIHziLfrUOPX4OlOqrgt&oh=00_AYApiSMAOLxJzXVnUGLJTAj3CahKCfUF4j3-f3obXqxNlg&oe=67288898" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">James Taylor</h3>
-                            <p class="team-member-bio">Fitness trainer specializing in golf-specific strength and conditioning.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://i0.wp.com/daredaniel.com/wp-content/uploads/2023/08/LeftBehind-2.jpg?w=880&ssl=1" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">Rachel Kim</h3>
-                            <p class="team-member-bio">Performance analyst helping members track and improve their progress.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://scontent-atl3-1.xx.fbcdn.net/v/t39.30808-6/459395074_7662128407221595_1838025560919283442_n.png?_nc_cat=103&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=UKNgaL5iQB0Q7kNvgFNWLCk&_nc_zt=23&_nc_ht=scontent-atl3-1.xx&_nc_gid=Ax7fj_ij0tWvcE8YrQJpIMz&oh=00_AYAZz8P_oJDKPSCJvZl_v60s1zvOBBY0CTZynwyHwP3Wfw&oe=6728AA85" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">Tom Anderson</h3>
-                            <p class="team-member-bio">Facility manager ensuring top-notch maintenance of all equipment and amenities.</p>
-                        </div>
-                    </div>
-                    <div class="team-member">
-                        <img src="https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66f436d2235a9568e502f800.png" alt="Team Member" class="team-member-image">
-                        <div class="team-member-info">
-                            <h3 class="team-member-name">Sarah Miller</h3>
-                            <p class="team-member-bio">Customer experience specialist focused on member satisfaction and engagement.</p>
-                        </div>
-                    </div>
+                <div class="popup-info">
+                    <h3 class="popup-title"></h3>
+                    <div class="popup-year"></div>
+                    <p class="popup-description"></p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <script>
-        function toggleMenu() {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const hamburger = document.querySelector('.hamburger');
-            
-            mobileMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
-        }
+        const popupContent = {
+            'Profectus Golf': {
+                mediaType: 'image',
+                media: 'https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66d9be264bb8a90e3dfba822.png',
+                title: 'Profectus Golf Academy',
+                year: '2020',
+                description: 'Started Profectus Golf Academy, bringing innovative golf instruction to Nashville'
+            },
+            'Hideout Sylvan': {
+                mediaType: 'video',
+                media: 'https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66ef07beb460449f31bb78b9.mp4',
+                title: 'The Hideout Golf Club - Sylvan Park',
+                year: '2023',
+                description: 'First Hideout location opens in Sylvan Park, introducing state-of-the-art golf technology'
+            },
+            'Hideout 8th': {
+                mediaType: 'video',
+                media: 'https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66ef07b63b00e20b9fed8bfa.mp4',
+                title: 'The Hideout Golf Club - 8th Avenue',
+                year: '2024',
+                description: 'Second location opens on 8th Ave, expanding The Hideout\'s unique golf experience'
+            },
+            'Future': {
+                mediaType: 'video',
+                media: 'https://storage.googleapis.com/msgsndr/RWD1uKPwFu84Zcm7Go2Q/media/66ef07be4b96a92a2ec3f410.mp4',
+                title: 'Jake Finn joins the Hideout!',
+                year: '2024',
+                description: 'Hideout adds serious teaching firepower with the former head pro for Valhala Golf Club home of PGA Championship (1996, 2000, 2014, 2024) Ryder Cup (2008) Senior PGA Championship (2004, 2011) to name a few'
+            }
+        };
 
-        document.querySelectorAll('.mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                const mobileMenu = document.querySelector('.mobile-menu');
-                const hamburger = document.querySelector('.hamburger');
-                mobileMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.style.overflow = '';
+        // Simple click handler
+        document.querySelectorAll('.logo-circle').forEach(circle => {
+            circle.addEventListener('click', () => {
+                const logo = circle.querySelector('.timeline-logo');
+                const altText = logo.getAttribute('alt');
+                const content = popupContent[altText];
+                
+                if (content) {
+                    const popup = document.querySelector('.timeline-popup');
+                    const mediaContainer = popup.querySelector('.popup-media');
+                    
+                    // Clear previous media
+                    mediaContainer.innerHTML = '';
+                    
+                    if (content.mediaType === 'video') {
+                        const video = document.createElement('video');
+                        video.src = content.media;
+                        video.autoplay = true;
+                        video.loop = true;
+                        video.muted = true;
+                        video.playsInline = true;
+                        mediaContainer.appendChild(video);
+                    } else {
+                        const img = document.createElement('img');
+                        img.src = content.media;
+                        img.alt = altText;
+                        mediaContainer.appendChild(img);
+                    }
+                    
+                    popup.querySelector('.popup-title').textContent = content.title;
+                    popup.querySelector('.popup-year').textContent = content.year;
+                    popup.querySelector('.popup-description').textContent = content.description;
+                    popup.classList.add('active');
+                }
             });
         });
 
-        document.addEventListener('click', (e) => {
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const hamburger = document.querySelector('.hamburger');
-            
-            if (mobileMenu.classList.contains('active') && 
-                !mobileMenu.contains(e.target) && 
-                !hamburger.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-                document.body.style.overflow = '';
+        function closePopup() {
+            document.querySelector('.timeline-popup').classList.remove('active');
+        }
+
+        // Close popup when clicking outside
+        document.querySelector('.timeline-popup').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                closePopup();
             }
         });
 
-        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.backgroundAttachment = 'scroll';
+        // Close popup with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePopup();
             }
-        }
+        });
     </script>
 </body>
 </html>
